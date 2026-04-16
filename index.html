@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work Permit & LAP Client Guide</title>
+  <title>Knowledge Base | Work Permit & LAP</title>
   <style>
     :root {
-      --bg: #f7f8fc;
+      --bg: #f4f6f8;
       --card: #ffffff;
-      --ink: #1d2433;
-      --muted: #5b6475;
-      --line: #e5e8f0;
-      --accent: #275efe;
-      --accent-soft: #e8efff;
+      --ink: #162033;
+      --muted: #627088;
+      --line: #dce2ea;
+      --accent: #1c4e80;
+      --accent-2: #7c8f5a;
+      --accent-soft: #eef4fb;
       --good: #0f7b4d;
       --warn: #a15c00;
-      --shadow: 0 10px 30px rgba(23,34,67,.08);
-      --radius: 18px;
+      --shadow: 0 8px 24px rgba(20,32,51,.06);
+      --radius: 14px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -24,29 +25,44 @@
       margin: 0;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
-      background: linear-gradient(180deg, #f9fbff 0%, var(--bg) 160px);
+      background: linear-gradient(180deg, #eef2f5 0%, var(--bg) 180px);
     }
     a { color: var(--accent); text-decoration: none; }
     code { background: #f2f5fb; padding: 2px 6px; border-radius: 6px; }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .wrap { max-width: 1220px; margin: 0 auto; padding: 24px; }
     .hero {
-      display: grid; gap: 18px; padding: 28px; border-radius: 28px; background: radial-gradient(circle at top right, #e9f0ff, #fff 50%);
-      border: 1px solid var(--line); box-shadow: var(--shadow); margin-top: 10px;
+      display: grid; gap: 18px; padding: 28px; border-radius: 22px; background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
+      border: 1px solid var(--line); box-shadow: var(--shadow); margin-top: 10px; position: relative; overflow: hidden;
     }
+    .hero::after {
+      content: ""; position: absolute; inset: auto -80px -80px auto; width: 240px; height: 240px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(28,78,128,.10), rgba(28,78,128,0)); pointer-events: none;
+    }
+    .hero-top { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+    .brand { display:flex; align-items:center; gap:14px; }
+    .brand-mark {
+      width:56px; height:56px; border-radius:16px; display:grid; place-items:center; background:#17324d; color:#fff; font-weight:800; letter-spacing:.06em;
+      box-shadow: 0 8px 18px rgba(23,50,77,.16);
+    }
+    .meta-row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    .meta-chip { background:#f5f7fa; color:#415067; border:1px solid var(--line); padding:7px 10px; border-radius:999px; font-size:.85rem; }
+    .quicknav { display:flex; flex-wrap:wrap; gap:10px; margin-top:4px; }
+    .quicknav a { color:var(--ink); background:#fff; border:1px solid var(--line); padding:10px 12px; border-radius:12px; font-size:.92rem; }
+    .quicknav a:hover { border-color:#c3cfdd; background:#f9fbfd; }
     h1 { margin: 0; font-size: clamp(1.9rem, 2.5vw, 3rem); line-height: 1.05; }
     .sub { color: var(--muted); font-size: 1rem; max-width: 850px; }
     .pillrow { display: flex; flex-wrap: wrap; gap: 10px; }
-    .pill { background: var(--accent-soft); color: #1a3ca6; border: 1px solid #cfdcff; padding: 8px 12px; border-radius: 999px; font-size: .92rem; }
+    .pill { background: var(--accent-soft); color: var(--accent); border: 1px solid #d5e2f2; padding: 8px 12px; border-radius: 999px; font-size: .92rem; }
     .searchbar {
       display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 8px;
     }
     input, select {
-      border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; font: inherit; background: #fff; color: var(--ink);
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font: inherit; background: #fff; color: var(--ink);
     }
     .searchbar input { flex: 1 1 320px; min-width: 240px; }
     button {
-      border: 0; background: var(--accent); color: white; border-radius: 14px; padding: 12px 16px; font: inherit; font-weight: 600; cursor: pointer;
-      box-shadow: 0 8px 20px rgba(39,94,254,.24);
+      border: 0; background: var(--accent); color: white; border-radius: 12px; padding: 12px 16px; font: inherit; font-weight: 600; cursor: pointer;
+      box-shadow: 0 8px 20px rgba(28,78,128,.18);
     }
     button.secondary { background: white; color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
     .grid {
@@ -60,7 +76,7 @@
     .card h2, .card h3 { margin: 0 0 12px; }
     .mini-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
     .mini {
-      grid-column: span 3; border: 1px solid var(--line); background: #fbfcff; border-radius: 16px; padding: 16px;
+      grid-column: span 3; border: 1px solid var(--line); background: #fbfcff; border-radius: 14px; padding: 16px;
     }
     .mini .label { color: var(--muted); font-size: .9rem; }
     .mini .big { font-size: 1.1rem; font-weight: 700; margin-top: 6px; }
@@ -68,17 +84,17 @@
     .muted { color: var(--muted); }
     ul { margin: 0; padding-left: 18px; }
     li { margin: 7px 0; }
-    .note { background: #fff9ec; border: 1px solid #f1dfb7; color: #6f5200; padding: 12px 14px; border-radius: 14px; }
+    .note { background: #fff8ea; border: 1px solid #ecd7a3; color: #6f5200; padding: 12px 14px; border-radius: 12px; }
     .good { background: #edf9f2; border-color: #c8efd8; color: #0d6540; }
     .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 16px; }
     table { width: 100%; border-collapse: collapse; font-size: .95rem; }
     th, td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-    th { background: #f4f7ff; position: sticky; top: 0; }
-    .kicker { color: var(--accent); font-weight: 700; font-size: .83rem; letter-spacing: .02em; text-transform: uppercase; margin-bottom: 8px; }
-    .badge { display: inline-block; padding: 5px 9px; border-radius: 999px; background: #eef3ff; color: #294db8; font-size: .85rem; border: 1px solid #d8e2ff; }
+    th { background: #f3f6fa; position: sticky; top: 0; }
+    .kicker { color: var(--accent); font-weight: 700; font-size: .79rem; letter-spacing: .02em; text-transform: uppercase; margin-bottom: 8px; }
+    .badge { display: inline-block; padding: 5px 9px; border-radius: 999px; background: #eef4fb; color: var(--accent); font-size: .85rem; border: 1px solid #d5e2f2; }
     .result-box {
       display: grid; gap: 12px; margin-top: 14px;
-      background: #fbfcff; border: 1px solid var(--line); border-radius: 16px; padding: 16px;
+      background: #fafbfd; border: 1px solid var(--line); border-radius: 14px; padding: 16px;
     }
     .flex { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
     .timeline { display: grid; gap: 12px; }
@@ -87,14 +103,17 @@
     }
     .num {
       width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 800;
-      border: 1px solid #cfdbff;
+      border: 1px solid #d5e2f2;
     }
     .footer { color: var(--muted); font-size: .92rem; padding: 28px 0 8px; }
     .small { font-size: .92rem; }
     .source {
       border-top: 1px dashed var(--line); margin-top: 14px; padding-top: 12px; color: var(--muted); font-size: .9rem;
     }
-    @media (max-width: 900px) {
+        .section-header { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
+    .soft-panel { background:#f8fafc; border:1px solid var(--line); border-radius:14px; padding:16px; }
+    .hero-note { max-width: 860px; }
+@media (max-width: 900px) {
       .mini { grid-column: span 6; }
       .two { grid-template-columns: 1fr; }
     }
@@ -108,19 +127,33 @@
 <body>
   <div class="wrap">
     <section class="hero">
-      <div class="kicker">Internal quick-reference site</div>
-      <h1>Work Permit & LAP Client Guide</h1>
-      <div class="sub">
+      <div class="hero-top">
+        <div class="brand">
+          <div class="brand-mark">KB</div>
+          <div>
+            <div class="kicker">Internal reference portal</div>
+            <h1>Knowledge Base for Work Permit & LAP</h1>
+          </div>
+        </div>
+      </div>
+      <div class="sub hero-note">
+        A single internal reference page for work permit calls, LAP checks, sector rules, health office mapping, and process workflow. Built to make lookups faster, clearer, and easier to update.
       </div>
       <div class="pillrow">
         <span class="pill">Work Permit</span>
         <span class="pill">LAP</span>
         <span class="pill">PIP / Quota</span>
         <span class="pill">Health Office Finder</span>
-        <span class="pill">Client Call Checklist</span>
+        <span class="pill">Call Checklist</span>
+      </div>
+      <div class="quicknav">
+        <a href="#searchResultsCard">Search results</a>
+        <a href="#checklistResult">Checklist</a>
+        <a href="#localityResult">Health office</a>
+        <a href="#sanitaryResult">Sanitary calculator</a>
       </div>
       <div class="searchbar">
-        <input id="globalSearch" placeholder="Search a sector, locality, office, document, or keyword..." />
+        <input id="globalSearch" placeholder="Search sector, locality, office, document, or keyword" />
         <button id="searchBtn">Search</button>
         <button class="secondary" id="clearBtn">Clear</button>
       </div>
@@ -135,12 +168,12 @@
 
     <div class="grid">
       <section class="card">
-        <h2>What to ask the client first</h2>
+        <div class="section-header"><h2>What to ask the client first</h2><span class="badge">Call prep</span></div>
         <div class="mini-grid" id="callQuestions"></div>
       </section>
 
       <section class="card">
-        <div class="kicker">Quick answers</div>
+        <div class="kicker">Key reference points</div>
         <div class="mini-grid">
           <div class="mini">
             <div class="label">PIP / Quota</div>
@@ -165,7 +198,7 @@
         <div class="two">
           <div>
             <h2>Checklist generator</h2>
-            <p class="muted">Pick a sector and application type. The site will show the general documents, special requirements, and key notes.</p>
+            <p class="muted">Select a sector and application type to show the main documents, sector-specific items, and handling notes.</p>
             <div class="flex">
               <select id="sectorSelect"></select>
               <select id="applicationType">
@@ -177,8 +210,8 @@
             <div id="checklistResult" class="result-box"></div>
           </div>
           <div>
-            <h2>Locality → Health Office finder</h2>
-            <p class="muted">Type a locality like Surinam, Chemin Grenier, Phoenix, Curepipe, Grand Baie, or Mahebourg.</p>
+            <h2>Locality to Health Office finder</h2>
+            <p class="muted">Search by locality to identify the correct health office, address, and contact details.</p>
             <div class="flex">
               <input id="localityInput" placeholder="Enter locality name" />
               <button id="findLocality">Find</button>
@@ -273,8 +306,6 @@
       </section>
     </div>
 
-    <div class="footer">
-    </div>
   </div>
 
   <script>
