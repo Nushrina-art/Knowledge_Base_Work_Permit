@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work Permit & LAP Client Guide</title>
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --card: #ffffff;
+      --ink: #1d2433;
+      --muted: #5b6475;
+      --line: #e5e8f0;
+      --accent: #275efe;
+      --accent-soft: #e8efff;
+      --good: #0f7b4d;
+      --warn: #a15c00;
+      --shadow: 0 10px 30px rgba(23,34,67,.08);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f9fbff 0%, var(--bg) 160px);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    code { background: #f2f5fb; padding: 2px 6px; border-radius: 6px; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .hero {
+      display: grid; gap: 18px; padding: 28px; border-radius: 28px; background: radial-gradient(circle at top right, #e9f0ff, #fff 50%);
+      border: 1px solid var(--line); box-shadow: var(--shadow); margin-top: 10px;
+    }
+    h1 { margin: 0; font-size: clamp(1.9rem, 2.5vw, 3rem); line-height: 1.05; }
+    .sub { color: var(--muted); font-size: 1rem; max-width: 850px; }
+    .pillrow { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill { background: var(--accent-soft); color: #1a3ca6; border: 1px solid #cfdcff; padding: 8px 12px; border-radius: 999px; font-size: .92rem; }
+    .searchbar {
+      display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 8px;
+    }
+    input, select {
+      border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; font: inherit; background: #fff; color: var(--ink);
+    }
+    .searchbar input { flex: 1 1 320px; min-width: 240px; }
+    button {
+      border: 0; background: var(--accent); color: white; border-radius: 14px; padding: 12px 16px; font: inherit; font-weight: 600; cursor: pointer;
+      box-shadow: 0 8px 20px rgba(39,94,254,.24);
+    }
+    button.secondary { background: white; color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
+    .grid {
+      display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; margin-top: 22px;
+    }
+    .card {
+      grid-column: span 12;
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 20px;
+    }
+    .card h2, .card h3 { margin: 0 0 12px; }
+    .mini-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+    .mini {
+      grid-column: span 3; border: 1px solid var(--line); background: #fbfcff; border-radius: 16px; padding: 16px;
+    }
+    .mini .label { color: var(--muted); font-size: .9rem; }
+    .mini .big { font-size: 1.1rem; font-weight: 700; margin-top: 6px; }
+    .two { display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; }
+    .muted { color: var(--muted); }
+    ul { margin: 0; padding-left: 18px; }
+    li { margin: 7px 0; }
+    .note { background: #fff9ec; border: 1px solid #f1dfb7; color: #6f5200; padding: 12px 14px; border-radius: 14px; }
+    .good { background: #edf9f2; border-color: #c8efd8; color: #0d6540; }
+    .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    th, td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #f4f7ff; position: sticky; top: 0; }
+    .kicker { color: var(--accent); font-weight: 700; font-size: .83rem; letter-spacing: .02em; text-transform: uppercase; margin-bottom: 8px; }
+    .badge { display: inline-block; padding: 5px 9px; border-radius: 999px; background: #eef3ff; color: #294db8; font-size: .85rem; border: 1px solid #d8e2ff; }
+    .result-box {
+      display: grid; gap: 12px; margin-top: 14px;
+      background: #fbfcff; border: 1px solid var(--line); border-radius: 16px; padding: 16px;
+    }
+    .flex { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .timeline { display: grid; gap: 12px; }
+    .step {
+      display: grid; grid-template-columns: 42px 1fr; gap: 14px; align-items: start;
+    }
+    .num {
+      width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 800;
+      border: 1px solid #cfdbff;
+    }
+    .footer { color: var(--muted); font-size: .92rem; padding: 28px 0 8px; }
+    .small { font-size: .92rem; }
+    .source {
+      border-top: 1px dashed var(--line); margin-top: 14px; padding-top: 12px; color: var(--muted); font-size: .9rem;
+    }
+    @media (max-width: 900px) {
+      .mini { grid-column: span 6; }
+      .two { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .mini { grid-column: span 12; }
+      .wrap { padding: 16px; }
+      .hero { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="kicker">Internal quick-reference site</div>
+      <h1>Work Permit & LAP Client Guide</h1>
+      <div class="sub">
+        A static cheat-sheet website for calls and client follow-up. No more panic-scroll through PDFs while someone on the phone waits for you to sound competent. This gathers the work permit, LAP, sector rules, health office mapping, and internal workflow into one place.
+      </div>
+      <div class="pillrow">
+        <span class="pill">Work Permit</span>
+        <span class="pill">LAP</span>
+        <span class="pill">PIP / Quota</span>
+        <span class="pill">Health Office Finder</span>
+        <span class="pill">Client Call Checklist</span>
+      </div>
+      <div class="searchbar">
+        <input id="globalSearch" placeholder="Search a sector, locality, office, document, or keyword..." />
+        <button id="searchBtn">Search</button>
+        <button class="secondary" id="clearBtn">Clear</button>
+      </div>
+    </section>
+
+    <section class="card" id="searchResultsCard" style="display:none; margin-top:22px;">
+      <div class="kicker">Search results</div>
+      <h2 id="searchTitle">Results</h2>
+      <div id="searchSummary" class="muted" style="margin-bottom:14px;"></div>
+      <div id="searchResults" class="result-box"></div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>What to ask the client first</h2>
+        <div class="mini-grid" id="callQuestions"></div>
+      </section>
+
+      <section class="card">
+        <div class="kicker">Quick answers</div>
+        <div class="mini-grid">
+          <div class="mini">
+            <div class="label">PIP / Quota</div>
+            <div class="big">Needed where applicable for more than 5 foreign workers</div>
+          </div>
+          <div class="mini">
+            <div class="label">Main work permit platform</div>
+            <div class="big">NELS / EDB online submission</div>
+          </div>
+          <div class="mini">
+            <div class="label">Residence Permit</div>
+            <div class="big">Automatically routed with online work permit submission</div>
+          </div>
+          <div class="mini">
+            <div class="label">Contract rule</div>
+            <div class="big">Vetting for salary ≤ MUR 50,000</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="two">
+          <div>
+            <h2>Checklist generator</h2>
+            <p class="muted">Pick a sector and application type. The site will show the general documents, special requirements, and key notes.</p>
+            <div class="flex">
+              <select id="sectorSelect"></select>
+              <select id="applicationType">
+                <option value="new">New application</option>
+                <option value="renewal">Renewal</option>
+              </select>
+              <button id="generateChecklist">Generate</button>
+            </div>
+            <div id="checklistResult" class="result-box"></div>
+          </div>
+          <div>
+            <h2>Locality → Health Office finder</h2>
+            <p class="muted">Type a locality like Surinam, Chemin Grenier, Phoenix, Curepipe, Grand Baie, or Mahebourg.</p>
+            <div class="flex">
+              <input id="localityInput" placeholder="Enter locality name" />
+              <button id="findLocality">Find</button>
+            </div>
+            <div id="localityResult" class="result-box"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Sector policy matrix</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sector</th>
+                <th>Ratio</th>
+                <th>PIP / Quota</th>
+                <th>Period of stay</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="sectorPolicyTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="two">
+          <div>
+            <h2>LAP quick guide</h2>
+            <ul id="lapDocs"></ul>
+            <div class="note" style="margin-top:14px;">
+              <strong>Renewal:</strong> <span id="lapRenewal"></span>
+            </div>
+            <div class="note good" style="margin-top:12px;">
+              <strong>Processing fee:</strong> <span id="lapProcessing"></span>
+            </div>
+          </div>
+          <div>
+            <h2>LAP fees by number of lodgers</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Lodgers</th><th>Fee</th></tr>
+                </thead>
+                <tbody id="lapFees"></tbody>
+              </table>
+            </div>
+            <div class="source">
+              <strong>Useful reminder:</strong> the permit must be displayed in a conspicuous place, validity is up to 36 months, and extra information may still be requested by the ministry.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="two">
+          <div>
+            <h2>Sanitary calculator</h2>
+            <p class="muted">Simple helper based on the Sixth Schedule table for water closets, wash-basins, bathrooms and urinals.</p>
+            <div class="flex">
+              <input id="maleCount" type="number" min="0" placeholder="Male employees" />
+              <input id="femaleCount" type="number" min="0" placeholder="Female employees" />
+              <button id="calcSanitary">Calculate</button>
+            </div>
+            <div id="sanitaryResult" class="result-box"></div>
+          </div>
+          <div>
+            <h2>Important LAP compliance points</h2>
+            <ul id="lapRules"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Workflow from first client call to permit pickup</h2>
+        <div class="timeline" id="workflow"></div>
+      </section>
+
+      <section class="card">
+        <div class="two">
+          <div>
+            <h2>Core contacts</h2>
+            <div id="contacts"></div>
+          </div>
+          <div>
+            <h2>Health office directory</h2>
+            <div id="officeCards"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer">
+      Built as a static site so it can be uploaded directly to GitHub Pages. Update <code>data.json</code> whenever policies or checklists change.
+    </div>
+  </div>
+
+  <script>
+    const data = {"healthOffices": [{"name": "Riviere du Rempart", "phone": "412-8035", "fax": "412-3868", "address": "1st Floor, Prayag Complex (Opp R. Boolaky Stadium), Royal Road, Riviere du Rempart", "localities": ["Amaury", "Amitié", "Anse La Raie", "Bain Boeuf", "Barlow", "Belle Vue Maurel", "Calodyne", "Cap Malheureux", "Cottage", "Espérance Trébuchet", "Forbach", "Gokhoola", "Goodlands", "Grand Baie", "Grand Gaube", "Ile d’Ambre", "Labourdonnais", "Mon Loisir", "Pereybere", "Petit Raffray", "Piton (part – L’Esperance Piton side)", "Plaine des Roches", "Pointe des Lascars", "Poudre d'Or Hamlet", "Poudre d'Or village", "Rivière du Rempart", "Roche Terre", "Roches Noires", "Sottise (Grand Bay)", "Upper Vale"]}, {"name": "Flacq", "phone": "413-2555", "fax": "413-9484", "address": "1st Floor, Chinapayel Building, Kotayah Road, Riche Mare, Central Flacq", "localities": ["Argy", "Bel Etang", "Belle Mare", "Belvedere", "Bois D’Oiseaux", "Bon Accueil", "Bonne Mere", "Bramsthan", "Bras d’Eau", "Brisée Verdière", "Camp de Masque", "Camp Ithier", "Camp Marcelin", "Camp Raffia", "Centre de Flacq", "Constance", "Ecroignard", "FUEL", "Grande Retraite", "Hermitage", "Isidore Rose", "Lallmatie", "La Porte Providence", "Laventure", "Mare D’Australia", "Mare La Chaux", "Médine (Camp de Masque)", "Nehru Nagar", "Palmar", "Petite Retraite", "Pointe de Flacq", "Pont Blanc", "Pont Bon Dieu", "Poste de Flacq", "Poste Lafayette", "Quatre Cocos", "Queen Victoria", "Riche Fond", "St Julien d'Hotman", "St Julien village", "Unité"]}, {"name": "Curepipe", "phone": "696-1223", "fax": "698-8097", "address": "Cossigny Street, Curepipe Road, Curepipe", "localities": ["Allée Brillant", "Camp Caval", "Cité L’Oiseaux", "Cité Malherbes", "Curepipe", "Eau Coulée", "Floreal", "Forest Side", "La Brasserie", "La Vigie", "Les Casernes", "Midlands", "16eme Mille"]}, {"name": "Vacoas", "phone": "696-4197", "fax": "696-4858", "address": "1st Floor, Vacoas Area Health Centre, Dr. Chiranjiv Bhardwaj Street, Vacoas", "localities": ["Allée Brillant", "Belle Terre", "Bonne Terre", "Camp Fouquereaux", "Careau Laliane", "Castel", "Cinq Arpents", "Closel", "Glen Park", "Grand Bassin", "Henrietta", "Highlands", "Holywood", "La Caverne", "La Marie", "Mesnil", "Mon Desir", "Paillote", "Petit Camp", "Phoenix", "Quinze Cantons", "Sadally", "Solferino", "St. Paul", "Vacoas", "Valentina", "Wooton"]}, {"name": "Rose Hill", "phone": "466-1765", "fax": "467-0319", "address": "1st Floor, NPF Building, Rose Hill", "localities": ["Barkly", "Bassin", "Beau Bassin", "Belle Etoile", "Belle Rose", "Camp Levieux", "Candos", "Coromandel", "Ebene", "Mont Roches", "Palma (Part)", "Plaisance", "Quatre Bornes", "Roche Brunes", "Rose Hill", "Sodnac", "Stanley", "Trefles", "Trianon"]}, {"name": "St Pierre", "phone": "433-4240", "fax": "433-3060", "address": "Morcellement Merrytown, Helvetia, St. Pierre", "localities": ["Alma", "Bagatelle", "Beau Bois", "Belle Rive", "Camp Thorel", "Dagotière", "Dubreuil", "Espérance (Quartier Militaire)", "GRNW (part)", "Hermitage", "L’Assurance", "L’Avenir", "La Laura-Malenga", "La Pipe", "Melrose", "Moka", "Montagne Blanche", "Montagne Ory", "Montebello", "Nouvelle Découverte", "Pailles", "Petit Paquet", "Petit Verger", "Providence", "Quartier Militaire", "Reduit", "Ripailles", "Salazie", "Soreze", "St Pierre", "Valetta", "Verdun", "Vuillemin"]}, {"name": "Bambous", "phone": "452-0133", "fax": "452-2273", "address": "Royal Road, Bambous", "localities": ["Albion", "Bambous", "Beau Songes & Bassin Estate", "Canot", "Cascavelle", "Case Noyale", "Chamarel", "Chebel (part)", "Coteau Raffin", "Flic en Flac", "Grande Riviere Noire", "Gros Cailloux", "La Ferme", "La Gaulette", "La Prairie", "La Preneuse", "Le Morne", "Medine (Bambous)", "Palma (up to Feeder canal)", "Petite Rivière", "Petite Riviere Noire", "Pointe aux Sables (incl. Terrason, Petit Verger, La Tour Koenig)", "Richelieu", "St Martin", "Tamarin", "Wolmar", "Yemen"]}, {"name": "Port Louis", "phone": "212-2098", "fax": "208-6310", "address": "Atchia Building, Cnr Suffren & Mgr Gonin Streets, Port Louis", "localities": ["Bain des Dames", "Bell Village", "Camp Benoit", "Camp Chapelon", "Camp Yoloff", "Canal Dayot", "Cassis", "Caudan", "Coromandel (part)", "GRNW", "La Tour Koenig (part)", "Les Salines", "Pailles (part)", "Mer Rouge", "Plaine Lauzun", "Plaine Verte", "Pointe aux Sables (part)", "Port area", "Port Louis Centre", "Roche Bois (incl. Briquetterie, Karo Kalyptus)", "Ste. Croix & Pere Laval", "Tranquebar", "Vallée des Pretres (La Cure, Caro Lalo, Le Cornu, Cipayes Brulée)", "Vallée Pitot", "Vallijee", "Ward IV"]}, {"name": "SSRN", "phone": "243-3993", "fax": "243-9838", "address": "Powder Mill Road, Pamplemousses", "localities": ["Arsenal", "Baie du Tombeau", "Balaclava", "Belle Vue Harel", "Belle Vue Pitot", "Bois Marchand", "Bois Pignolet", "Butte aux Papayes", "Calebasses", "Camp La Boue", "Congomah", "Crève Coeur", "D'Epinay", "Fond du Sac", "Grande Rosalie", "Ilot, Khoyrutty", "Le Goulet", "Le Hochet", "Les Mariannes", "Long Mountain", "Lower Vale", "Mapou (District Court side)", "Mon Choisy", "Mon Gout", "Mount", "Morcellement St André", "Notre Dame", "Pamplemousses", "Petite Julie", "Petite Rosalie", "Piton (Police Headquarters side)", "Plaine des Papayes", "Pointe aux Biches", "Pointe aux Canonniers", "Pointe aux Piments", "Pont Praslin", "Riche Terre", "Riviere Citron & Powder Mill Road", "Solitude", "St. Joseph", "Terre Rouge", "Triolet", "Trou aux Biches", "Ville Bague"]}, {"name": "Bel Air", "phone": "419-2429", "fax": "419-1121", "address": "Royal Road, Bel Air Rivière Sèche", "localities": ["Bel Air Rivière Sèche", "Belle Rive", "Belle Rose", "Clavet", "Camp de Masque Pavé", "Caroline", "Clemencia (Bel Air)", "Deep River", "Deux Frères", "Ernest Florent", "Etoile", "Grand River South East", "La Laura", "La Lucie Roy", "Lesur", "Marie Jeanne", "Morc Roy", "Olivia", "Pellegrin", "Petit Bois", "Petite Cabane", "Pointe aux Feuilles", "Pont Lardier", "Quatre Soeurs", "Sebastopol", "St. Michel", "Trou d'Eau Douce (up to Livestock Palmar)"]}, {"name": "Souillac", "phone": "625-5521", "fax": "625-4418", "address": "Royal Road, Souillac (Near Bus Terminus)", "localities": ["Baie du Cap", "Batimarais", "Bel Ombre", "Bénarès", "Bois Chéri", "Britannia", "Camp Diable", "Chamouny", "Chemin Grenier", "Grand Bois", "La Flora", "Riambel", "Rivière des Anguilles", "Riviere des Galets", "Riviere Dragon", "Rivière du Poste (as from Govt School)", "Souillac", "St Aubin", "St Felix", "St Martin", "Surinam", "Tyack", "Union Ducray"]}, {"name": "Mahebourg", "phone": "631-5784", "fax": "631-2621", "address": "Cent Gaulette Road, Mahebourg (Near Mahebourg Hospital)", "localities": ["Anse Jonchée", "Bambous Virieux", "Beau Vallon", "Blue Bay", "Bois des Amourettes", "Cité La Chaux", "Ferney", "Grand Bel Air", "Grand Sable", "Le Chaland", "Le Val", "Mahebourg", "Petit Bel Air", "Petit Sable", "Plaine Magnien (Airport side)", "Pointe d’Esny", "Providence", "Riche en Eau", "Riviere des Creoles", "Solitude", "SSR International Airport", "St. Hilaire", "St. Hubert", "Vieux Grand Port", "Ville Noire"]}, {"name": "Rose Belle", "phone": "627-4526", "fax": "627-3664", "address": "Old Market Road, Rose Belle", "localities": ["Balisson", "Bananes", "Beau Climat", "Beemanique", "Camp Carol", "Carreau Accacia", "Carreau Esnouf", "Cluny", "Deux Bras", "Gros Billot", "Gros Bois", "La Rosa", "Le Bouchon", "L’Escalier", "Malakoff", "Mare Chicose", "Mare d'Albert", "Mare Tabac", "Mont Fertile", "Mon Tresor Mon Desert", "New Grove", "Nouvelle France", "Plaine Magnien", "Plein Bois", "Pont Colville", "Riviere du Poste (up to Govt School)", "Rose Belle", "Trois Boutiques (Union Vale)", "Union Park"]}], "sectorPolicies": [{"sector": "Textile Manufacturing", "ratio": "No ratio", "pip": "Not required", "period": "10 years", "notes": "Still needs a valid LAP for the number of foreign workers to be recruited."}, {"sector": "Bakery (Traditional only)", "ratio": "No ratio", "pip": "Not required", "period": "8 years", "notes": ""}, {"sector": "Agriculture", "ratio": "No ratio", "pip": "Not required", "period": "8 years", "notes": ""}, {"sector": "Construction", "ratio": "No ratio", "pip": "Not required", "period": "8 years", "notes": "For project basis, period of stay is until completion date of project."}, {"sector": "SMEs in sectors 1 to 4", "ratio": "Depends on sector", "pip": "Not required", "period": "Depends on sector", "notes": ""}, {"sector": "Export Oriented Enterprises (Manufacturing)", "ratio": "No ratio", "pip": "Not required", "period": "10 years", "notes": ""}, {"sector": "Freeport", "ratio": "No ratio", "pip": "Not required", "period": "8 years", "notes": ""}, {"sector": "Jewellery", "ratio": "No ratio", "pip": "Not required", "period": "8 years", "notes": ""}, {"sector": "ICT/BPO", "ratio": "No ratio", "pip": "Not required", "period": "8 years", "notes": ""}, {"sector": "Other Manufacturing Activities", "ratio": "4:1", "pip": "Required if recruiting more than 5 foreign workers", "period": "10 years", "notes": "Ratio is foreign to local workers."}, {"sector": "Food Processing", "ratio": "4:1", "pip": "Required if recruiting more than 5 foreign workers", "period": "8 years", "notes": "Ratio is foreign to local workers."}, {"sector": "Motor vehicle repair and maintenance", "ratio": "3:1", "pip": "Required if recruiting more than 5 foreign workers", "period": "8 years", "notes": "Ratio is foreign to local workers."}, {"sector": "Printing and Publishing", "ratio": "3:1", "pip": "Required if recruiting more than 5 foreign workers", "period": "8 years", "notes": "Ratio is foreign to local workers."}, {"sector": "Bus Industry (Driver and Conductor)", "ratio": "1:1", "pip": "Required if recruiting more than 5 foreign workers", "period": "8 years", "notes": "Ratio is foreign to local workers."}, {"sector": "Tourism (including Restaurants)", "ratio": "1:3", "pip": "Required if recruiting more than 5 foreign workers", "period": "8 years", "notes": "No ratio for cooks and chefs."}, {"sector": "Victualler", "ratio": "1:3", "pip": "Required if recruiting more than 5 foreign workers", "period": "8 years", "notes": "Ratio is foreign to local workers."}, {"sector": "Other Scarcity Areas", "ratio": "1:3", "pip": "Required if recruiting more than 5 foreign workers", "period": "8 years", "notes": "Ratio is foreign to local workers."}], "generalRequirements": [{"item": "LAP or Letter of Accommodation", "note": "LAP must usually be valid for 3 months. LAP is not applicable for professionals, household employees, religious bodies, and sports sector cases. Those use a letter of accommodation instead."}, {"item": "CSG receipt + list of local workers", "note": "Latest month. Not applicable for sports sector, household employees and religious bodies."}, {"item": "Turnover", "note": "Last 3 years. Financial statement for sport sector. Not applicable for jockeys, household employees and religious bodies."}, {"item": "Letter of Authorisation + NIC of registered user", "note": ""}, {"item": "Business Registration Card", "note": ""}, {"item": "Certificate of Incorporation / Association / Registration", "note": "Commercial partnerships or 'Societe' also need a Certificate of Posting. Household employees: not applicable."}, {"item": "Recruiting agent documents", "note": "If applicable: agency letter, director NIC, recruitment licence. Not needed for renewal."}, {"item": "Photograph", "note": ""}, {"item": "Passport copy", "note": "Passport should have 6 months validity for new applications."}, {"item": "Provisional medical clearance", "note": "6 months validity. Not applicable for renewal."}, {"item": "Vetted contract of employment or salary proof", "note": "If salary is 50,000 MUR or below, contract vetting applies. If above 50,000 MUR, employer documentary evidence of salary is required."}], "sectorDetails": {"Professionals": {"applies": "Professional roles", "requirements": ["Job profile (main duties)", "Qualifications and work experience details", "CV", "Deputation letter where applicable"], "notes": ["HEC recognition is required for academic qualifications before work permit application.", "If the qualification is technical/vocational and not covered by HEC, recognition must be sought from MQA.", "Most of these are N/A for renewal.", "Professionals may also be eligible for an Occupation Permit under the Immigration Act."]}, "Freeport": {"applies": "Freeport sector", "requirements": ["Valid Freeport Certificate from EDB Mauritius"], "notes": []}, "Construction": {"applies": "Construction sector", "requirements": ["Valid Construction Industry Authority certificate", "Letter of award(s) for project basis or supporting documents"], "notes": ["CIA certificate is N/A if turnover is less than 1 million MUR."]}, "Tourism": {"applies": "Hotels, restaurants, guest houses, tourist residence, pleasure craft and spa", "requirements": ["Valid Tourism Enterprise License / Hotel Certificate / Guest House Certificate / Tourist Residence Certificate / Pleasure Craft Certificate", "Latest TEWF receipt", "Job profile", "Qualifications and work experience", "CV"], "notes": ["Licence and TEWF receipt should have 3 months validity.", "If no vocational qualification, at least 2 years work experience in the grade applied for is required.", "English and/or French literacy is mandatory for specific grades.", "Most of these are N/A for renewal."]}, "Bus Drivers": {"applies": "Public bus operators", "requirements": ["Work testimonial(s)", "Medical fitness certificate including eyesight tests", "Certificate of character", "Valid foreign driving licence", "Training certificate issued by MITD", "List of local bus drivers on payroll", "Proof of English or French proficiency", "Vacancy report from EIC"], "notes": ["Need 3 years' experience as a bus driver for new cases.", "For renewal, a Mauritius Police Force service licence is required instead of foreign licence.", "MITD certificate is for renewal only.", "Sourcing countries limited to India, Nepal, Sri Lanka and Madagascar.", "Age must be between 25 and 45."]}, "Bus Conductors": {"applies": "Public bus operators", "requirements": ["Medical fitness certificate", "Certificate of character", "List of local bus conductors on payroll", "Proof of English or French proficiency", "Vacancy report from EIC"], "notes": ["Sourcing countries limited to India, Nepal, Sri Lanka and Madagascar.", "Age must be between 25 and 45."]}, "Offshore": {"applies": "Offshore sector", "requirements": ["Valid Global Business Licence from the Financial Services Commission"], "notes": []}, "Education": {"applies": "Education sector", "requirements": ["Certificate of registration of company with MQA and/or HEC"], "notes": []}, "Domestic Carers": {"applies": "Domestic carers / garde malade", "requirements": ["Job profile", "Qualifications and work experience", "Medical certificate of patient", "NIC if person requiring care is above 18", "Birth certificate if person requiring care is below 18", "Certificate of character"], "notes": ["Medical certificate of patient has 3 months validity.", "If the person with disability is concerned, medical certificate must come from the Medical Unit of the Ministry of Social Integration, Social Security and National Solidarity.", "Age 21 to 55."]}, "Domestic Driver": {"applies": "Domestic driver", "requirements": ["International driving licence", "Certificate of character", "Job profile"], "notes": ["Age 21 to 55."]}, "Domestic Maid / Household Worker": {"applies": "Domestic maid, household worker, babysitter, nanny, gardener, cook", "requirements": ["Certificate of character", "Qualification or work testimonial", "Job profile"], "notes": ["Age 21 to 55."]}, "Sports": {"applies": "Football, basketball, volleyball, handball", "requirements": ["Covering letter from club", "Domestic Transfer Certificate / Clearance-International Transfer Certificate", "Recent cash flow statement or forecast cash flow statement", "Letter from relevant sports federation specifying current season", "No objection letter for transfer cases"], "notes": ["Covering letter should specify place of accommodation or submit a letter of accommodation.", "Football players should be aged 18 to 60 years."]}, "Jockey": {"applies": "Sports sector jockey", "requirements": ["8 passport size photos", "Covering letter from stable with seal", "No objection letter from Horse Racing Division", "Disciplinary record", "Character certificate from racing club/authority"], "notes": ["Manual application.", "Character certificate should state jockey is not currently suspended, has no injury and is clear to ride."]}, "Religious Organisations": {"applies": "Religious bodies", "requirements": ["Certificate of registration of Association / Act of Parliament / Board of WAQF Commissioners"], "notes": ["For skilled workers such as painters or sculptors, a letter mentioning start and end date of project is required."]}, "NGO": {"applies": "Non-governmental organisations", "requirements": ["Letter from Ministry of Finance confirming charitable status, or stating it is not registered as religious or charitable institution"], "notes": []}}, "callQuestions": ["What sector is the company in?", "How many foreign workers are they recruiting, and for which grades?", "Is it a new application or a renewal?", "What salary is being offered for each grade? Is it above or below MUR 50,000?", "Does the company already have a valid LAP, or will a letter of accommodation apply instead?", "Does the company already have an EDB account and Mauritius Jobs account?", "Do they already have BRN, COI, CSG proofs, turnover for 3 years, and shareholder list ready?", "For sector-specific cases, do they have the relevant licence/certificate already?", "For candidate documents, are passports valid for at least 6 months and are medical tests available?"], "workflow": [{"step": "Collect core company details", "details": "Number of workers and grades, job descriptions, salary range, BRN, COI, shareholder list, VAT certificate, licences, CSG records, turnover, and any existing LAP."}, {"step": "Create company setup", "details": "Create company email if needed, create EDB login, and create Mauritius Jobs account if the client does not already have one."}, {"step": "Prepare letters", "details": "Draft declarant letter, turnover letter, and owner consent letters for LAP / health / fire where required."}, {"step": "EIC / Mauritius Jobs", "details": "Fill vacancy notification form, advertise on Mauritius Jobs, contact candidates sent by EIC, and prepare EIC report."}, {"step": "PIP if applicable", "details": "Needed where applicable for more than 5 foreign workers. Prepare form, COI, BRN, CSG proofs, shareholder list, licences and authorisation letter."}, {"step": "Lodging preparation", "details": "Finalise lodging and obtain site, location and layout plans. Use draughtsman if plans do not exist."}, {"step": "Fire certificate", "details": "Apply on EDB with layout, site and location plans plus owner consent. Schedule fire visit. Internal procedures note a Rs 1,000 fire certificate payment."}, {"step": "Health clearance", "details": "Apply to nearest health office with layout, site and location plans, BRN, COI and owner consent. Schedule sanitary visit and collect clearance."}, {"step": "LAP application", "details": "Submit LAP form with health clearance, fire certificate, plans, BRN, COI, IDs, and letters of authorisation / owner authorisation or lease as required. Pay Rs 500 processing fee, then LAP fee based on number of lodgers."}, {"step": "Candidate selection", "details": "Receive candidate profiles/videos from agents, shortlist, client interview, confirm passports and medicals."}, {"step": "Medical clearance", "details": "Submit covering letter, passport copies, original medical tests and stamped name list to public health office / migrant worker section as applicable."}, {"step": "Contract vetting", "details": "Submit 3 signed and stamped contracts to the Special Migrant Workers Unit. Malagasy cases may also need embassy vetting."}, {"step": "Work and residence permit application", "details": "Submit online through NELS/EDB. Residence permit application is automatically routed to PIO for online work permit submissions."}, {"step": "Follow up and payment", "details": "Answer EDB queries within 5 working days. Internal procedures note Rs 700 application fee per head and later claims depending on sector/duration."}], "lap": {"documents": ["Duly filled LAP application form", "Health Clearance from Ministry of Health and Wellness / Quality of Life", "Fire Certificate / Fire Clearance", "Site plan and layout plan of employees' lodging accommodation", "Copy of Business Registration Card", "Owner authorisation + owner ID copy or lease agreement", "Director ID copy", "Applicant ID copy if someone other than director is handling application", "Director authorisation letter allowing the person to submit/amend the application"], "fees": [{"lodgers": "1 to 50", "fee": "Rs 3,000"}, {"lodgers": "51 to 100", "fee": "Rs 5,000"}, {"lodgers": "101 to 500", "fee": "Rs 8,000"}, {"lodgers": "More than 500", "fee": "Rs 10,000"}], "processing_fee": "Rs 500 non-refundable processing fee", "renewal": "Apply within 3 months before expiry, with fresh health and fire clearances. Permit lapses 30 days after expiry if not renewed. Late renewal may attract a 50% surcharge under the regulations.", "contacts": [{"name": "Occupational Safety and Health Inspectorate", "address": "Level 3, Victoria House, Cnr Barracks and St Louis Street, Port Louis", "phone": "207-2600", "fax": "207-2630"}, {"name": "Cash Office", "address": "Level 8, Victoria House, Cnr Barracks and St Louis Street, Port Louis", "hours": "09:00-12:00 and 12:30-15:00"}], "rules": ["No employer may use a building as lodging accommodation without a permit.", "Permit validity is up to 36 months.", "Permit must be exhibited in a conspicuous place in the lodging accommodation.", "Accommodation should not be in the same building as the factory or place of work, subject to transitional provisions.", "Each room must have an updated lodger inventory sheet.", "Bedroom floor area must be at least 4.6 m² for one employee with single bed, and 5.2 m² for any 2 employees with bunk beds.", "Beds must be separate with proper mattresses. Minimum spacing is 1.1 m between single beds and 1.2 m where bunk beds are used.", "Separate lodging accommodation areas must be provided for male and female employees.", "Bedroom height must be at least 2.5 m.", "Ventilation openings must be at least one tenth of floor area, with sufficient natural or artificial lighting.", "Sanitary facilities must be accessible at all times, supplied with clean running water, and cleaned/disinfected every day.", "Bathrooms and toilets need impervious non-skid floors; sanitary walls tiled to at least 2 m; bathroom walls tiled or waterproof-painted to at least 2 m.", "Water storage tanks should be cleaned and disinfected at least every 6 months.", "Kitchen must have adequate cooking facilities, refrigeration, air extraction, screened openings, grease trap drainage, separate scullery, and clean dining area.", "Fire rules include emergency exits / escape provisions, extinguishers, warning system where applicable, and no smoking or cooking in bedrooms.", "At least two socket outlets should be provided in each bedroom per lodger and no multiplug should be used in bedrooms.", "A first-aid box and enough appointed persons / first-aiders should be available, with transport arrangements to hospital if needed."]}, "sanitary": {"waterClosets": {"male": [{"max": 15, "value": 2}, {"max": 30, "value": 4}, {"max": 50, "value": 5}, {"max": 75, "value": 6}, {"max": 100, "value": 7}, {"max": 150, "value": 8}], "female": [{"max": 15, "value": 2}, {"max": 30, "value": 4}, {"max": 50, "value": 6}, {"max": 75, "value": 7}, {"max": 100, "value": 9}, {"max": 150, "value": 10}], "overRule": "For over 150, provide 1 additional sanitary convenience for every 25 male and for every 25 female employees."}, "washBasins": {"male": [{"max": 15, "value": 1}, {"max": 30, "value": 2}, {"max": 50, "value": 3}, {"max": 75, "value": 4}, {"max": 100, "value": 6}, {"max": 125, "value": 7}], "female": [{"max": 15, "value": 2}, {"max": 30, "value": 3}, {"max": 50, "value": 4}, {"max": 75, "value": 5}, {"max": 100, "value": 7}, {"max": 125, "value": 9}], "overRule": "For over 125, provide 1 additional wash-basin for every 20 male or every 20 female employees."}, "bathrooms": {"rows": [{"max": 7, "value": 1}, {"max": 15, "value": 2}, {"max": 25, "value": 3}, {"max": 35, "value": 4}, {"max": 45, "value": 5}, {"max": 55, "value": 6}], "overRule": "For over 55, provide 1 additional bathroom for every 15 male or every 15 female employees."}, "urinals": {"rule": "1 urinal (pan) for every 15 persons"}}, "contacts": [{"name": "Work Permit Counter", "where": "10th Floor, Victoria House, Port Louis", "contact": "Tel: 405 0143", "notes": "Manual submission point for PIP and certain non-online applications."}, {"name": "Special Migrant Workers Unit", "where": "7th Floor, Victoria House, Port Louis", "contact": "Tel: 207 2600", "notes": "Contract vetting."}, {"name": "Occupational Safety and Health Division / Inspectorate", "where": "1st Floor / Level 3, Victoria House, Port Louis", "contact": "Tel: 207 2600 | Fax: 207 2630", "notes": "LAP-related guidance and submissions."}, {"name": "Cash Office", "where": "Level 8, Victoria House, Port Louis", "contact": "09:00-12:00 and 12:30-15:00", "notes": "LAP fee payments."}, {"name": "Occupational Health Unit / Migrant Worker Section", "where": "1st Floor, NexSky, Ebene", "contact": "migrantworkersection@gmail.com", "notes": "Provisional and final health clearance."}, {"name": "Recruitment License Unit", "where": "Ministry contact", "contact": "Tel: 405 0117", "notes": "Licensed recruitment agents."}, {"name": "NELS / technical help", "where": "Online", "contact": "helpdesk-wp@govmu.org", "notes": "Technical help for work permit platform."}, {"name": "Work permit email", "where": "Online", "contact": "emp@govmu.org", "notes": "General work permit contact."}]};
+
+    const sectorSelect = document.getElementById('sectorSelect');
+    const appType = document.getElementById('applicationType');
+    const checklistResult = document.getElementById('checklistResult');
+    const localityInput = document.getElementById('localityInput');
+    const localityResult = document.getElementById('localityResult');
+    const sectorPolicyTable = document.getElementById('sectorPolicyTable');
+    const callQuestionsEl = document.getElementById('callQuestions');
+    const workflowEl = document.getElementById('workflow');
+    const contactsEl = document.getElementById('contacts');
+    const officeCardsEl = document.getElementById('officeCards');
+
+    function escapeHtml(text) {
+      return String(text ?? '').replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+    }
+
+    function renderCallQuestions() {
+      data.callQuestions.forEach((q, index) => {
+        const div = document.createElement('div');
+        div.className = 'mini';
+        div.innerHTML = `<div class="label">Question ${index + 1}</div><div class="big">${escapeHtml(q)}</div>`;
+        callQuestionsEl.appendChild(div);
+      });
+    }
+
+    function renderSectorOptions() {
+      const names = Object.keys(data.sectorDetails);
+      names.forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        sectorSelect.appendChild(option);
+      });
+    }
+
+    function renderSectorTable(rows = data.sectorPolicies) {
+      sectorPolicyTable.innerHTML = rows.map(row => `
+        <tr>
+          <td><strong>${escapeHtml(row.sector)}</strong></td>
+          <td>${escapeHtml(row.ratio)}</td>
+          <td>${escapeHtml(row.pip)}</td>
+          <td>${escapeHtml(row.period)}</td>
+          <td>${escapeHtml(row.notes || '—')}</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderChecklist() {
+      const key = sectorSelect.value;
+      const details = data.sectorDetails[key];
+      const renewal = appType.value === 'renewal';
+
+      const general = data.generalRequirements.map(req => {
+        const lower = (req.note || '').toLowerCase();
+        if (renewal && (lower.includes('not needed for renewal') || lower.includes('not applicable for renewal'))) {
+          return `<li><strong>${escapeHtml(req.item)}:</strong> ${escapeHtml(req.note)} <span class="badge">Check carefully for renewal</span></li>`;
+        }
+        return `<li><strong>${escapeHtml(req.item)}:</strong> ${escapeHtml(req.note || 'Required')}</li>`;
+      }).join('');
+
+      const sectorReqs = (details.requirements || []).map(item => `<li>${escapeHtml(item)}</li>`).join('');
+      const notes = (details.notes || []).map(item => `<li>${escapeHtml(item)}</li>`).join('');
+
+      checklistResult.innerHTML = `
+        <div>
+          <span class="badge">${escapeHtml(details.applies)}</span>
+          <h3 style="margin-top:10px;">${escapeHtml(key)} checklist</h3>
+          <p class="muted small">Application type: <strong>${renewal ? 'Renewal' : 'New application'}</strong></p>
+        </div>
+        <div class="two">
+          <div>
+            <h3>General documents</h3>
+            <ul>${general}</ul>
+          </div>
+          <div>
+            <h3>Sector-specific requirements</h3>
+            <ul>${sectorReqs || '<li>No extra items recorded in this starter version.</li>'}</ul>
+            <h3 style="margin-top:12px;">Notes</h3>
+            <ul>${notes || '<li>No extra notes recorded.</li>'}</ul>
+          </div>
+        </div>
+      `;
+    }
+
+    function normalize(s) {
+      return (s || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '')
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+    }
+
+    function findLocality() {
+      const query = normalize(localityInput.value);
+      if (!query) {
+        localityResult.innerHTML = '<div class="muted">Type a locality first.</div>';
+        return;
+      }
+      const matches = [];
+      data.healthOffices.forEach(office => {
+        office.localities.forEach(loc => {
+          if (normalize(loc).includes(query) || query.includes(normalize(loc))) {
+            matches.push({ office, locality: loc });
+          }
+        });
+      });
+
+      if (!matches.length) {
+        localityResult.innerHTML = '<div class="muted">No match found in this starter dataset. Try a nearby spelling or search by office instead.</div>';
+        return;
+      }
+
+      localityResult.innerHTML = matches.slice(0, 8).map(match => `
+        <div style="border:1px solid var(--line); border-radius:14px; padding:12px;">
+          <div class="badge">${escapeHtml(match.locality)}</div>
+          <h3 style="margin-top:10px;">Health Office: ${escapeHtml(match.office.name)}</h3>
+          <div class="small"><strong>Address:</strong> ${escapeHtml(match.office.address)}</div>
+          <div class="small"><strong>Phone:</strong> ${escapeHtml(match.office.phone)} &nbsp; <strong>Fax:</strong> ${escapeHtml(match.office.fax)}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderLap() {
+      document.getElementById('lapDocs').innerHTML = data.lap.documents.map(item => `<li>${escapeHtml(item)}</li>`).join('');
+      document.getElementById('lapRenewal').textContent = data.lap.renewal;
+      document.getElementById('lapProcessing').textContent = data.lap.processing_fee;
+      document.getElementById('lapFees').innerHTML = data.lap.fees.map(row => `<tr><td>${escapeHtml(row.lodgers)}</td><td>${escapeHtml(row.fee)}</td></tr>`).join('');
+      document.getElementById('lapRules').innerHTML = data.lap.rules.slice(0, 8).map(item => `<li>${escapeHtml(item)}</li>`).join('');
+    }
+
+    function calcThreshold(rows, count, overThreshold, increment) {
+      if (count <= 0) return 0;
+      for (const row of rows) {
+        if (count <= row.max) return row.value;
+      }
+      return rows[rows.length - 1].value + Math.ceil((count - overThreshold) / increment);
+    }
+
+    function calculateSanitary() {
+      const male = Math.max(0, Number(document.getElementById('maleCount').value || 0));
+      const female = Math.max(0, Number(document.getElementById('femaleCount').value || 0));
+
+      const wcMale = calcThreshold(data.sanitary.waterClosets.male, male, 150, 25);
+      const wcFemale = calcThreshold(data.sanitary.waterClosets.female, female, 150, 25);
+      const wbMale = calcThreshold(data.sanitary.washBasins.male, male, 125, 20);
+      const wbFemale = calcThreshold(data.sanitary.washBasins.female, female, 125, 20);
+      const bathMale = calcThreshold(data.sanitary.bathrooms.rows, male, 55, 15);
+      const bathFemale = calcThreshold(data.sanitary.bathrooms.rows, female, 55, 15);
+      const totalBath = bathMale + bathFemale;
+      const urinals = male > 0 ? Math.ceil(male / 15) : 0;
+
+      document.getElementById('sanitaryResult').innerHTML = `
+        <div class="mini-grid">
+          <div class="mini"><div class="label">Male employees</div><div class="big">${male}</div></div>
+          <div class="mini"><div class="label">Female employees</div><div class="big">${female}</div></div>
+          <div class="mini"><div class="label">Water closets</div><div class="big">Male ${wcMale} | Female ${wcFemale}</div></div>
+          <div class="mini"><div class="label">Wash-basins</div><div class="big">Male ${wbMale} | Female ${wbFemale}</div></div>
+          <div class="mini"><div class="label">Bathrooms</div><div class="big">Male ${bathMale} | Female ${bathFemale}</div></div>
+          <div class="mini"><div class="label">Total bathrooms</div><div class="big">${totalBath}</div></div>
+          <div class="mini"><div class="label">Urinals</div><div class="big">${urinals}</div></div>
+        </div>
+        <div class="note">
+          Bathrooms are shown separately for male and female accommodation areas, then added to give the total. This matches the rule that separate lodging accommodation areas must be provided for male and female employees. Always verify against the official Sixth Schedule table before submission.
+        </div>
+      `;
+    }
+
+    function renderWorkflow() {
+      workflowEl.innerHTML = data.workflow.map((step, i) => `
+        <div class="step">
+          <div class="num">${i + 1}</div>
+          <div>
+            <h3>${escapeHtml(step.step)}</h3>
+            <div class="muted">${escapeHtml(step.details)}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderContacts() {
+      contactsEl.innerHTML = data.contacts.map(item => `
+        <div style="border:1px solid var(--line); border-radius:14px; padding:12px; margin-bottom:10px;">
+          <strong>${escapeHtml(item.name)}</strong>
+          <div class="small">${escapeHtml(item.where)}</div>
+          <div class="small">${escapeHtml(item.contact)}</div>
+          <div class="muted small">${escapeHtml(item.notes || '')}</div>
+        </div>
+      `).join('');
+
+      officeCardsEl.innerHTML = data.healthOffices.map(office => `
+        <div style="border:1px solid var(--line); border-radius:14px; padding:12px; margin-bottom:10px;">
+          <strong>${escapeHtml(office.name)}</strong>
+          <div class="small">${escapeHtml(office.address)}</div>
+          <div class="small">Tel: ${escapeHtml(office.phone)} | Fax: ${escapeHtml(office.fax)}</div>
+          <div class="muted small">${office.localities.length} localities loaded</div>
+        </div>
+      `).join('');
+    }
+
+    function showSearchResults(title, summary, html) {
+      const card = document.getElementById('searchResultsCard');
+      document.getElementById('searchTitle').textContent = title;
+      document.getElementById('searchSummary').textContent = summary;
+      document.getElementById('searchResults').innerHTML = html;
+      card.style.display = 'block';
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function globalSearch() {
+      const raw = document.getElementById('globalSearch').value || '';
+      const q = normalize(raw);
+      if (!q) {
+        renderSectorTable();
+        localityResult.innerHTML = '<div class="muted">Search by locality to see the assigned health office.</div>';
+        document.getElementById('searchResultsCard').style.display = 'none';
+        return;
+      }
+
+      const sectorMatches = data.sectorPolicies.filter(row =>
+        normalize([row.sector, row.ratio, row.pip, row.period, row.notes].join(' ')).includes(q)
+      );
+
+      const officeMatches = [];
+      data.healthOffices.forEach(office => {
+        if (normalize([office.name, office.address, office.phone, office.fax].join(' ')).includes(q)) {
+          officeMatches.push({ office, locality: office.name, type: 'office' });
+        }
+        office.localities.forEach(loc => {
+          if (normalize(loc).includes(q)) officeMatches.push({ office, locality: loc, type: 'locality' });
+        });
+      });
+
+      const checklistMatches = Object.entries(data.sectorDetails).filter(([sector, details]) => {
+        return normalize([
+          sector,
+          details.applies || '',
+          ...(details.requirements || []),
+          ...(details.notes || [])
+        ].join(' ')).includes(q);
+      });
+
+      const contactMatches = data.contacts.filter(item =>
+        normalize([item.name, item.where, item.contact, item.notes || ''].join(' ')).includes(q)
+      );
+
+      const workflowMatches = data.workflow.filter(step =>
+        normalize([step.step, step.details].join(' ')).includes(q)
+      );
+
+      const lapMatches = [
+        ...data.lap.documents.map(item => ({ type: 'LAP document', text: item })),
+        ...data.lap.rules.map(item => ({ type: 'LAP rule', text: item })),
+        { type: 'LAP renewal', text: data.lap.renewal },
+        { type: 'LAP processing fee', text: data.lap.processing_fee }
+      ].filter(item => normalize(item.text).includes(q));
+
+      renderSectorTable(sectorMatches.length ? sectorMatches : data.sectorPolicies);
+      localityResult.innerHTML = officeMatches.length
+        ? officeMatches.slice(0, 8).map(match => `
+          <div style="border:1px solid var(--line); border-radius:14px; padding:12px;">
+            <div class="badge">${escapeHtml(match.locality)}</div>
+            <h3 style="margin-top:10px;">${escapeHtml(match.office.name)}</h3>
+            <div class="small">${escapeHtml(match.office.address)}</div>
+            <div class="small">Tel: ${escapeHtml(match.office.phone)} | Fax: ${escapeHtml(match.office.fax)}</div>
+          </div>
+        `).join('')
+        : '<div class="muted">No locality or office match found.</div>';
+
+      const blocks = [];
+      if (sectorMatches.length) {
+        blocks.push(`
+          <div>
+            <h3>Sectors</h3>
+            <div class="table-wrap"><table><tbody>
+              ${sectorMatches.slice(0, 8).map(row => `
+                <tr>
+                  <td><strong>${escapeHtml(row.sector)}</strong></td>
+                  <td>${escapeHtml(row.ratio)}</td>
+                  <td>${escapeHtml(row.pip)}</td>
+                  <td>${escapeHtml(row.period)}</td>
+                </tr>
+              `).join('')}
+            </tbody></table></div>
+          </div>
+        `);
+      }
+
+      if (checklistMatches.length) {
+        blocks.push(`
+          <div>
+            <h3>Checklist / sector guidance</h3>
+            ${checklistMatches.slice(0, 6).map(([sector, details]) => `
+              <div style="border:1px solid var(--line); border-radius:14px; padding:12px; margin-bottom:10px;">
+                <strong>${escapeHtml(sector)}</strong>
+                <div class="muted small" style="margin:6px 0;">${escapeHtml(details.applies || '')}</div>
+                <div class="small"><strong>Requirements:</strong> ${escapeHtml((details.requirements || []).slice(0,4).join('; ') || 'None listed')}</div>
+              </div>
+            `).join('')}
+          </div>
+        `);
+      }
+
+      if (officeMatches.length) {
+        blocks.push(`
+          <div>
+            <h3>Health offices / localities</h3>
+            ${officeMatches.slice(0, 6).map(match => `
+              <div style="border:1px solid var(--line); border-radius:14px; padding:12px; margin-bottom:10px;">
+                <div class="badge">${escapeHtml(match.locality)}</div>
+                <div style="margin-top:8px;"><strong>${escapeHtml(match.office.name)}</strong></div>
+                <div class="small">${escapeHtml(match.office.address)}</div>
+              </div>
+            `).join('')}
+          </div>
+        `);
+      }
+
+      if (lapMatches.length) {
+        blocks.push(`
+          <div>
+            <h3>LAP</h3>
+            <ul>${lapMatches.slice(0, 8).map(item => `<li><strong>${escapeHtml(item.type)}:</strong> ${escapeHtml(item.text)}</li>`).join('')}</ul>
+          </div>
+        `);
+      }
+
+      if (contactMatches.length) {
+        blocks.push(`
+          <div>
+            <h3>Contacts</h3>
+            ${contactMatches.slice(0, 6).map(item => `
+              <div style="border:1px solid var(--line); border-radius:14px; padding:12px; margin-bottom:10px;">
+                <strong>${escapeHtml(item.name)}</strong>
+                <div class="small">${escapeHtml(item.where)}</div>
+                <div class="small">${escapeHtml(item.contact)}</div>
+              </div>
+            `).join('')}
+          </div>
+        `);
+      }
+
+      if (workflowMatches.length) {
+        blocks.push(`
+          <div>
+            <h3>Workflow</h3>
+            <ul>${workflowMatches.slice(0, 6).map(item => `<li><strong>${escapeHtml(item.step)}:</strong> ${escapeHtml(item.details)}</li>`).join('')}</ul>
+          </div>
+        `);
+      }
+
+      if (!blocks.length) {
+        showSearchResults(
+          `No direct results for "${raw}"`,
+          'The old search felt broken because it only filtered some sections below the fold. This version now shows a dedicated result block here.',
+          '<div class="muted">Try a sector like <code>ICT/BPO</code>, a locality like <code>Surinam</code>, or a term like <code>LAP</code>, <code>medical clearance</code>, or <code>contract</code>.</div>'
+        );
+        return;
+      }
+
+      const total = sectorMatches.length + officeMatches.length + checklistMatches.length + lapMatches.length + contactMatches.length + workflowMatches.length;
+      showSearchResults(
+        `Results for "${raw}"`,
+        `${total} match${total === 1 ? '' : 'es'} found across sectors, localities, checklist guidance, LAP, contacts, and workflow.`,
+        blocks.join('')
+      );
+    }
+
+    document.getElementById('generateChecklist').addEventListener('click', renderChecklist);
+    document.getElementById('findLocality').addEventListener('click', findLocality);
+    document.getElementById('calcSanitary').addEventListener('click', calculateSanitary);
+    document.getElementById('searchBtn').addEventListener('click', globalSearch);
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      document.getElementById('globalSearch').value = '';
+      localityInput.value = '';
+      renderSectorTable();
+      localityResult.innerHTML = '<div class="muted">Search by locality to see the assigned health office.</div>';
+      document.getElementById('searchResultsCard').style.display = 'none';
+    });
+    localityInput.addEventListener('keydown', e => { if (e.key === 'Enter') findLocality(); });
+    document.getElementById('globalSearch').addEventListener('keydown', e => { if (e.key === 'Enter') globalSearch(); });
+    renderCallQuestions();
+    renderSectorOptions();
+    renderSectorTable();
+    renderChecklist();
+    renderLap();
+    renderWorkflow();
+    renderContacts();
+    localityResult.innerHTML = '<div class="muted">Search by locality to see the assigned health office.</div>';
+    calculateSanitary();
+  </script>
+</body>
+</html>
