@@ -817,72 +817,77 @@
     }
   },
   "callQuestions": [
-    "What sector is the company in?",
-    "How many foreign workers are they recruiting, and for which grades?",
-    "Is it a new application or a renewal?",
-    "What salary is being offered for each grade? Is it above or below MUR 50,000?",
-    "Does the company already have a valid LAP, or will a letter of accommodation apply instead?",
-    "Does the company already have an EDB account and Mauritius Jobs account?",
-    "Do they already have BRN, COI, CSG proofs, turnover for 3 years, and shareholder list ready?",
-    "For sector-specific cases, do they have the relevant licence/certificate already?",
-    "For candidate documents, are passports valid for at least 6 months and are medical tests available?"
+    "Name of speaker",
+    "Date of call",
+    "Outcome of call",
+    "Number of expatriates needed",
+    "Post / grade required",
+    "Nationality required",
+    "Current number of local workers",
+    "Current number of expatriates",
+    "LAP available or not",
+    "If LAP exists, total capacity and remaining capacity",
+    "If no lodging, note that housing search is needed near company location",
+    "Company location",
+    "If construction company, ask for CIA certificate",
+    "If very interested, escalate for Mr. Vayid follow-up"
   ],
   "workflow": [
     {
-      "step": "Collect core company details",
-      "details": "Number of workers and grades, job descriptions, salary range, BRN, COI, shareholder list, VAT certificate, licences, CSG records, turnover, and any existing LAP."
+      "step": "First client call",
+      "details": "Record speaker name, date, call outcome, manpower need, nationality, local workers, expatriates, LAP status, and company location."
     },
     {
-      "step": "Create company setup",
-      "details": "Create company email if needed, create EDB login, and create Mauritius Jobs account if the client does not already have one."
+      "step": "Interest confirmed",
+      "details": "Confirm post / grade, number of expatriates, nationality, lodging situation, and whether escalation to Mr. Vayid is needed."
     },
     {
-      "step": "Prepare letters",
-      "details": "Draft declarant letter, turnover letter, and owner consent letters for LAP / health / fire where required."
+      "step": "Lodging review",
+      "details": "Check existing LAP capacity or start housing search near the company. Keep fire and sanitary clearance moving in parallel."
     },
     {
-      "step": "EIC / Mauritius Jobs",
-      "details": "Fill vacancy notification form, advertise on Mauritius Jobs, contact candidates sent by EIC, and prepare EIC report."
+      "step": "Candidate sourcing",
+      "details": "Contact agencies, request more CVs than final demand, and track all candidates in Excel."
     },
     {
-      "step": "PIP if applicable",
-      "details": "Needed where applicable for more than 5 foreign workers. Prepare form, COI, BRN, CSG proofs, shareholder list, licences and authorisation letter."
+      "step": "Client interview planning",
+      "details": "Confirm interview dates and platform, send CV summaries, and schedule interviews candidate by candidate if needed."
     },
     {
-      "step": "Lodging preparation",
-      "details": "Finalise lodging and obtain site, location and layout plans. Use draughtsman if plans do not exist."
+      "step": "Client selection",
+      "details": "Get final client choice, send confirmation email, and report update to the team."
     },
     {
-      "step": "Fire certificate",
-      "details": "Apply on EDB with layout, site and location plans plus owner consent. Schedule fire visit. Internal procedures note a Rs 1,000 fire certificate payment."
+      "step": "EIC process",
+      "details": "Complete EIC vacancy follow-up where required and send verified report after team review."
     },
     {
-      "step": "Health clearance",
-      "details": "Apply to nearest health office with layout, site and location plans, BRN, COI and owner consent. Schedule sanitary visit and collect clearance."
-    },
-    {
-      "step": "LAP application",
-      "details": "Submit LAP form with health clearance, fire certificate, plans, BRN, COI, IDs, and letters of authorisation / owner authorisation or lease as required. Pay Rs 500 processing fee, then LAP fee based on number of lodgers."
-    },
-    {
-      "step": "Candidate selection",
-      "details": "Receive candidate profiles/videos from agents, shortlist, client interview, confirm passports and medicals."
+      "step": "Candidate document check",
+      "details": "Verify passport, photo, medical, and maintain one folder per candidate."
     },
     {
       "step": "Medical clearance",
-      "details": "Submit covering letter, passport copies, original medical tests and stamped name list to public health office / migrant worker section as applicable."
+      "details": "Prepare covering letter and arrange Ebène deposit."
     },
     {
-      "step": "Contract vetting",
-      "details": "Submit 3 signed and stamped contracts to the Special Migrant Workers Unit. Malagasy cases may also need embassy vetting."
+      "step": "Fire and sanitary clearances",
+      "details": "Track both clearances in parallel until ready for LAP submission."
     },
     {
-      "step": "Work and residence permit application",
-      "details": "Submit online through NELS/EDB. Residence permit application is automatically routed to PIO for online work permit submissions."
+      "step": "LAP submission",
+      "details": "Submit LAP documents, pay processing fee and permit fee, then follow up on status."
     },
     {
-      "step": "Follow up and payment",
-      "details": "Answer EDB queries within 5 working days. Internal procedures note Rs 700 application fee per head and later claims depending on sector/duration."
+      "step": "Contract / COE and work permit",
+      "details": "Prepare contract documents, apply special Madagascar vetting if applicable, then submit work permit through EDB / NELS."
+    },
+    {
+      "step": "Entry permit and travel",
+      "details": "Follow up with PIO and agent for entry permit readiness and flight arrangements."
+    },
+    {
+      "step": "Residence permit after arrival",
+      "details": "After arrival in Mauritius, follow up with PIO, pay applicable fee, and track residence permit issue date / validity."
     }
   ],
   "lap": {
@@ -1143,5 +1148,150 @@
       "contact": "emp@govmu.org",
       "notes": "General work permit contact."
     }
-  ]
+  ],
+  "siteTitle": "Work Permit & LAP Desk Reference",
+  "remarksExamples": [
+    {
+      "case": "No answer",
+      "format": "DD/MM/YYYY - No answer"
+    },
+    {
+      "case": "Not interested",
+      "format": "DD/MM/YYYY - Not interested"
+    },
+    {
+      "case": "Interested",
+      "format": "DD/MM/YYYY - Interested - Needs [number] expatriates for [post/grade] - Nationality: [x]"
+    }
+  ],
+  "callWorkflow": {
+    "firstCallChecklist": [
+      {
+        "text": "Record name of speaker and date of call.",
+        "tag": "Internal process"
+      },
+      {
+        "text": "Note whether the outcome is no answer, not interested, or interested.",
+        "tag": "Internal process"
+      },
+      {
+        "text": "If interested, record number of expatriates needed, post / grade, and nationality required.",
+        "tag": "Internal process"
+      },
+      {
+        "text": "Ask how many local workers the company currently has.",
+        "tag": "Internal process"
+      },
+      {
+        "text": "Ask how many expatriates the company currently has.",
+        "tag": "Internal process"
+      },
+      {
+        "text": "Ask whether the company already has LAP.",
+        "tag": "Internal process"
+      },
+      {
+        "text": "If LAP exists, confirm permitted capacity and remaining available places.",
+        "tag": "Internal process"
+      },
+      {
+        "text": "If there is no lodging, note that housing search is required near the company location.",
+        "tag": "Internal process"
+      },
+      {
+        "text": "For construction companies only, ask whether the company has a CIA certificate.",
+        "tag": "Internal process"
+      },
+      {
+        "text": "If the client is very interested, note that Mr. Vayid should follow up directly.",
+        "tag": "Team practice"
+      }
+    ],
+    "interestedClientWorkflow": [
+      "Confirm exact manpower need by post / grade and nationality.",
+      "Verify current local workers, current expatriates, and LAP status.",
+      "If lodging exists, check remaining capacity under the current LAP.",
+      "If no lodging exists, search accommodation near the company location.",
+      "Keep fire and sanitary clearance progress moving in parallel with lodging preparation.",
+      "If the client is highly interested, escalate for direct follow-up by Mr. Vayid."
+    ],
+    "candidateSourcing": [
+      "Confirm post / grade and number of expatriates needed before contacting agencies.",
+      "Use the existing email templates to request candidates.",
+      "Request more CVs than the final number required so the team can compare profiles more effectively.",
+      "Example: if 5 candidates are needed, request around 10 CVs where possible.",
+      "Track agency, candidate, post, and CV status in the Excel database.",
+      "After internal review, share the updated candidate tracker with the team."
+    ],
+    "interviewProcess": [
+      "Ask the client which dates they are available for interviews.",
+      "Confirm whether interviews will be held on WhatsApp or Teams.",
+      "If many candidates are involved, schedule them one by one.",
+      "Before interview, send the client a summary of each expatriate profile together with the CVs.",
+      "Schedule interview with client, expatriate, and internal coordinator.",
+      "If a WhatsApp group is created, remove candidates one by one after interview when no longer needed.",
+      "After interview, email the client to confirm which expatriate(s) they choose.",
+      "Send confirmation email and internal report after client selection."
+    ],
+    "eicProcess": [
+      "Once potential expatriate candidates are confirmed, proceed with EIC follow-up where required.",
+      "Inform EIC that suitable candidates were not obtained locally and collect the vacancy form.",
+      "Send Director ID of Mr. Vayid as required.",
+      "Check email regularly for EIC follow-up.",
+      "Screen local candidates against the vacancy requirements and prepare the report.",
+      "Let the team verify the report before sending it to EIC."
+    ],
+    "candidateDocuments": [
+      "Check whether the expatriate has a valid passport.",
+      "Check passport validity before proceeding.",
+      "Request passport-size photo.",
+      "Request medical documents or arrange medical as required.",
+      "Create one folder per candidate and save passport, photo, medical, and related documents."
+    ],
+    "clearancesAndLap": [
+      "Keep fire clearance and sanitary clearance moving in parallel.",
+      "Medical covering letter is deposited at Ebène by Mr. Vayid.",
+      "Fire clearance is handled in Port Louis.",
+      "Sanitary clearance is handled according to region.",
+      "Once medical, fire, and sanitary papers are ready, prepare the LAP submission file.",
+      "Pay the LAP processing fee and then the applicable LAP permit fee at Victoria House, Port Louis.",
+      "Track LAP status after submission."
+    ],
+    "permitProcess": [
+      "After clearances, start contract / COE preparation and work permit processing.",
+      "For Madagascar only, contract vetting / stamping is required.",
+      "For Nepal and India, no Madagascar vetting applies.",
+      "Submit work permit through EDB / NELS.",
+      "If there is no query, proceed with payment of the application / final claim as applicable.",
+      "Check status regularly, obtain the approved work permit, and send copy to the team.",
+      "Liaise with PIO for entry permit and later for residence permit after arrival.",
+      "Coordinate with the agent for flight tickets once entry documents are ready."
+    ],
+    "quickReference": [
+      {
+        "label": "Work Permit",
+        "value": "EDB / Labour"
+      },
+      {
+        "label": "Entry Permit",
+        "value": "PIO"
+      },
+      {
+        "label": "Residence Permit",
+        "value": "PIO after arrival"
+      },
+      {
+        "label": "Medical covering letter deposit",
+        "value": "Ebène"
+      },
+      {
+        "label": "Fire clearance",
+        "value": "Port Louis"
+      },
+      {
+        "label": "Sanitary clearance",
+        "value": "By region / health office"
+      }
+    ]
+  }
 }
