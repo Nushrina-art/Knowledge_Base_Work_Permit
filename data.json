@@ -817,77 +817,87 @@
     }
   },
   "callQuestions": [
-    "Name of speaker",
+    "Who is the speaker / contact person?",
     "Date of call",
-    "Outcome of call",
-    "Number of expatriates needed",
-    "Post / grade required",
-    "Nationality required",
-    "Current number of local workers",
-    "Current number of expatriates",
-    "LAP available or not",
-    "If LAP exists, total capacity and remaining capacity",
-    "If no lodging, note that housing search is needed near company location",
-    "Company location",
-    "If construction company, ask for CIA certificate",
-    "If very interested, escalate for Mr. Vayid follow-up"
+    "What is the outcome: no answer, not interested, or interested?",
+    "If interested, how many expatriates are needed? Example: 2 to 4 expatriates",
+    "For which post / grade are the expatriates needed?",
+    "What nationality of expatriates is required?",
+    "How many local workers does the company currently have?",
+    "How many expatriates does the company currently have?",
+    "Does the company already have LAP?",
+    "If LAP exists, what is the total capacity and how many places remain available?",
+    "If there is no lodging, note that housing search is needed near the company location.",
+    "Where is the company situated?",
+    "For construction companies only: does the company have a CIA certificate?",
+    "Does the company already have an EDB account and Mauritius Jobs account?",
+    "For candidate documents, are passports valid, passport photos ready, and medical tests available?",
+    "If the client is very interested, flag for Mr. Vayid to follow up directly."
   ],
   "workflow": [
     {
-      "step": "First client call",
-      "details": "Record speaker name, date, call outcome, manpower need, nationality, local workers, expatriates, LAP status, and company location."
+      "step": "Initial client call",
+      "details": "Record speaker name, date, outcome, expatriate need, post / grade, nationality, local workers, current expatriates, LAP status, and company location."
     },
     {
-      "step": "Interest confirmed",
-      "details": "Confirm post / grade, number of expatriates, nationality, lodging situation, and whether escalation to Mr. Vayid is needed."
+      "step": "Construction check where applicable",
+      "details": "For construction companies only, confirm whether the CIA certificate is available."
     },
     {
       "step": "Lodging review",
-      "details": "Check existing LAP capacity or start housing search near the company. Keep fire and sanitary clearance moving in parallel."
+      "details": "If LAP already exists, verify capacity and remaining places. If there is no lodging, start housing search near the company."
     },
     {
-      "step": "Candidate sourcing",
-      "details": "Contact agencies, request more CVs than final demand, and track all candidates in Excel."
+      "step": "Lodging visit and parallel clearances",
+      "details": "Mr. Vayid handles lodging visit while fire and sanitary steps move in parallel."
     },
     {
-      "step": "Client interview planning",
-      "details": "Confirm interview dates and platform, send CV summaries, and schedule interviews candidate by candidate if needed."
+      "step": "Agency sourcing",
+      "details": "Confirm grade / post and number needed, then request more CVs than the exact need for better selection."
     },
     {
-      "step": "Client selection",
-      "details": "Get final client choice, send confirmation email, and report update to the team."
+      "step": "Candidate tracking",
+      "details": "Record agencies, CVs, and candidate status in Excel and share the updated sheet with the team after screening."
+    },
+    {
+      "step": "Interview planning",
+      "details": "Check client availability, confirm WhatsApp or Teams, and schedule interviews one by one if there are many candidates."
+    },
+    {
+      "step": "Client interview pack",
+      "details": "Before interview, email CVs and a short summary of each expatriate profile to the client."
+    },
+    {
+      "step": "Selection follow-up",
+      "details": "After interview, ask the client which expatriate is chosen, then send confirmation email and team update."
     },
     {
       "step": "EIC process",
-      "details": "Complete EIC vacancy follow-up where required and send verified report after team review."
+      "details": "Where required, proceed with vacancy form, Director ID, email follow-up, and team-verified EIC report."
     },
     {
-      "step": "Candidate document check",
-      "details": "Verify passport, photo, medical, and maintain one folder per candidate."
+      "step": "Candidate documents",
+      "details": "Check passport, passport validity, passport photo, medical tests, and save documents in one folder per candidate."
     },
     {
-      "step": "Medical clearance",
-      "details": "Prepare covering letter and arrange Ebène deposit."
-    },
-    {
-      "step": "Fire and sanitary clearances",
-      "details": "Track both clearances in parallel until ready for LAP submission."
+      "step": "Medical, fire, and sanitary",
+      "details": "Medical covering letter is deposited at Ebène. Fire is handled in Port Louis and sanitary depends on region."
     },
     {
       "step": "LAP submission",
-      "details": "Submit LAP documents, pay processing fee and permit fee, then follow up on status."
+      "details": "Submit LAP set after supporting clearances and track the applicable fees and status at Victoria House, Port Louis."
     },
     {
-      "step": "Contract / COE and work permit",
-      "details": "Prepare contract documents, apply special Madagascar vetting if applicable, then submit work permit through EDB / NELS."
+      "step": "Contract and work permit",
+      "details": "Prepare COE / contract, apply through EDB, handle VET for Madagascar only, and track work permit approval."
     },
     {
       "step": "Entry permit and travel",
-      "details": "Follow up with PIO and agent for entry permit readiness and flight arrangements."
+      "details": "Liaise with PIO for entry permit and with the agent for flight tickets."
     },
     {
       "step": "Residence permit after arrival",
-      "details": "After arrival in Mauritius, follow up with PIO, pay applicable fee, and track residence permit issue date / validity."
+      "details": "After the expatriate arrives in Mauritius, follow up with PIO for residence permit and payment / validity checks."
     }
   ],
   "lap": {
@@ -1160,112 +1170,125 @@
       "format": "DD/MM/YYYY - Not interested"
     },
     {
+      "case": "Spoke to contact",
+      "format": "DD/MM/YYYY - Spoke to [name of speaker]"
+    },
+    {
       "case": "Interested",
       "format": "DD/MM/YYYY - Interested - Needs [number] expatriates for [post/grade] - Nationality: [x]"
+    },
+    {
+      "case": "LAP capacity note",
+      "format": "DD/MM/YYYY - LAP capacity [total], occupied [used], remaining [remaining]"
+    },
+    {
+      "case": "Lodging needed",
+      "format": "DD/MM/YYYY - No lodging available - Housing search needed near company"
     }
   ],
   "callWorkflow": {
     "firstCallChecklist": [
       {
-        "text": "Record name of speaker and date of call.",
+        "text": "Record the name of the speaker and the date of call.",
         "tag": "Internal process"
       },
       {
-        "text": "Note whether the outcome is no answer, not interested, or interested.",
+        "text": "If there is no answer, write the date first in Remarks / Comments, then note no answer.",
+        "tag": "Team practice"
+      },
+      {
+        "text": "If the company is not interested, write the date first in Remarks / Comments, then note not interested.",
+        "tag": "Team practice"
+      },
+      {
+        "text": "If the company is interested, note the number of expatriates needed, the post / grade, and the nationality required.",
         "tag": "Internal process"
       },
       {
-        "text": "If interested, record number of expatriates needed, post / grade, and nationality required.",
+        "text": "Irrespective of sector, ask how many local workers and how many expatriates the company currently has.",
         "tag": "Internal process"
       },
       {
-        "text": "Ask how many local workers the company currently has.",
+        "text": "If the company already has expatriates, record the current number already employed.",
         "tag": "Internal process"
       },
       {
-        "text": "Ask how many expatriates the company currently has.",
+        "text": "Ask whether the company already has LAP and how many places remain available under the current permit.",
         "tag": "Internal process"
       },
       {
-        "text": "Ask whether the company already has LAP.",
+        "text": "If there is no lodging, note that housing search will be required near the company location.",
         "tag": "Internal process"
       },
       {
-        "text": "If LAP exists, confirm permitted capacity and remaining available places.",
-        "tag": "Internal process"
+        "text": "For construction companies only, ask whether the CIA certificate is available.",
+        "tag": "Official requirement"
       },
       {
-        "text": "If there is no lodging, note that housing search is required near the company location.",
-        "tag": "Internal process"
-      },
-      {
-        "text": "For construction companies only, ask whether the company has a CIA certificate.",
-        "tag": "Internal process"
-      },
-      {
-        "text": "If the client is very interested, note that Mr. Vayid should follow up directly.",
+        "text": "If the prospect is very interested, flag the case for Mr. Vayid to follow up directly.",
         "tag": "Team practice"
       }
     ],
     "interestedClientWorkflow": [
       "Confirm exact manpower need by post / grade and nationality.",
-      "Verify current local workers, current expatriates, and LAP status.",
-      "If lodging exists, check remaining capacity under the current LAP.",
-      "If no lodging exists, search accommodation near the company location.",
-      "Keep fire and sanitary clearance progress moving in parallel with lodging preparation.",
-      "If the client is highly interested, escalate for direct follow-up by Mr. Vayid."
+      "Record current local workers, current expatriates, and LAP status.",
+      "If LAP exists, verify total capacity, already occupied places, and remaining capacity.",
+      "If there is no lodging, search housing near the company location.",
+      "Lodging search, fire, and sanitary steps move in parallel once the case becomes active.",
+      "Very interested cases are escalated for direct follow-up by Mr. Vayid."
     ],
     "candidateSourcing": [
-      "Confirm post / grade and number of expatriates needed before contacting agencies.",
-      "Use the existing email templates to request candidates.",
-      "Request more CVs than the final number required so the team can compare profiles more effectively.",
-      "Example: if 5 candidates are needed, request around 10 CVs where possible.",
-      "Track agency, candidate, post, and CV status in the Excel database.",
-      "After internal review, share the updated candidate tracker with the team."
+      "Confirm the grade / post and number of expatriates needed before contacting agencies.",
+      "Use the existing email templates when contacting agencies.",
+      "Request more CVs than the exact need so the client has better choice.",
+      "Example: if 5 expatriates are needed, request around 10 CVs for better evaluation.",
+      "Track agency name, candidate name, and CV status in the database / Excel.",
+      "After screening, send the updated candidate Excel to the team."
     ],
     "interviewProcess": [
-      "Ask the client which dates they are available for interviews.",
-      "Confirm whether interviews will be held on WhatsApp or Teams.",
-      "If many candidates are involved, schedule them one by one.",
-      "Before interview, send the client a summary of each expatriate profile together with the CVs.",
-      "Schedule interview with client, expatriate, and internal coordinator.",
-      "If a WhatsApp group is created, remove candidates one by one after interview when no longer needed.",
-      "After interview, email the client to confirm which expatriate(s) they choose.",
-      "Send confirmation email and internal report after client selection."
+      "Ask the client whether they are available on certain dates for interviews.",
+      "Confirm whether the interview will be on WhatsApp or Teams.",
+      "If there are many candidates, schedule them one by one.",
+      "Before interview, send the client an email with CVs and a short summary of each expatriate profile.",
+      "Schedule interview with the client, expatriate, and yourself.",
+      "Create a WhatsApp group if needed, then remove candidates one by one after interview is completed.",
+      "After interview, email the client to ask which expatriate(s) they choose.",
+      "Send confirmation email and report the outcome to the team.",
+      "Prepare / research standard questions to ask expatriates during interview."
     ],
     "eicProcess": [
-      "Once potential expatriate candidates are confirmed, proceed with EIC follow-up where required.",
-      "Inform EIC that suitable candidates were not obtained locally and collect the vacancy form.",
-      "Send Director ID of Mr. Vayid as required.",
+      "When potential expatriate candidates are confirmed, proceed with EIC where required.",
+      "Tell EIC that suitable candidates were not obtained in Mauritius and collect the vacancy form.",
+      "Send the ID of Director Mr. Vayid when required.",
       "Check email regularly for EIC follow-up.",
-      "Screen local candidates against the vacancy requirements and prepare the report.",
-      "Let the team verify the report before sending it to EIC."
+      "Screen local candidates with questions where needed before final EIC reporting.",
+      "Before sending the final EIC report, let the team verify it."
     ],
     "candidateDocuments": [
-      "Check whether the expatriate has a valid passport.",
+      "Check whether each expatriate already has a passport.",
       "Check passport validity before proceeding.",
-      "Request passport-size photo.",
-      "Request medical documents or arrange medical as required.",
+      "Collect passport-size photo / recent passport photo.",
+      "Check whether medical tests already exist or whether medical still needs to be arranged.",
       "Create one folder per candidate and save passport, photo, medical, and related documents."
     ],
     "clearancesAndLap": [
       "Keep fire clearance and sanitary clearance moving in parallel.",
-      "Medical covering letter is deposited at Ebène by Mr. Vayid.",
+      "Medical covering letter is deposited at Ebène by Mr. Vayid irrespective of expatriate case.",
       "Fire clearance is handled in Port Louis.",
-      "Sanitary clearance is handled according to region.",
-      "Once medical, fire, and sanitary papers are ready, prepare the LAP submission file.",
-      "Pay the LAP processing fee and then the applicable LAP permit fee at Victoria House, Port Louis.",
-      "Track LAP status after submission."
+      "Sanitary clearance depends on the region / health office.",
+      "Once medical, fire, and sanitary documents are ready, submit the LAP set and track status.",
+      "Pay LAP processing fee and then the applicable LAP issue fee at Victoria House, Port Louis.",
+      "If there is no existing lodging, continue housing search near the company while clearances are ongoing."
     ],
     "permitProcess": [
-      "After clearances, start contract / COE preparation and work permit processing.",
-      "For Madagascar only, contract vetting / stamping is required.",
-      "For Nepal and India, no Madagascar vetting applies.",
-      "Submit work permit through EDB / NELS.",
-      "If there is no query, proceed with payment of the application / final claim as applicable.",
-      "Check status regularly, obtain the approved work permit, and send copy to the team.",
-      "Liaise with PIO for entry permit and later for residence permit after arrival.",
-      "Coordinate with the agent for flight tickets once entry documents are ready."
+      "After clearances, begin contract / COE preparation and work permit processing.",
+      "For Madagascar only, the contract must be vetted / stamped.",
+      "For Nepal and India, no VET is required.",
+      "Submit work permit through EDB and track for queries and payment stages.",
+      "Once approved, download the work permit and send it to the team.",
+      "Liaise with PIO for entry permit and call to inquire whether it is ready.",
+      "Liaise with the agent for flight tickets so expatriates can travel to Mauritius.",
+      "After arrival, follow up with PIO for residence permit and related payment / validity checks."
     ],
     "quickReference": [
       {
@@ -1274,15 +1297,11 @@
       },
       {
         "label": "Entry Permit",
-        "value": "PIO"
+        "value": "PIO - call to inquire if ready"
       },
       {
         "label": "Residence Permit",
-        "value": "PIO after arrival"
-      },
-      {
-        "label": "Medical covering letter deposit",
-        "value": "Ebène"
+        "value": "PIO after arrival - call to inquire if ready"
       },
       {
         "label": "Fire clearance",
@@ -1290,7 +1309,11 @@
       },
       {
         "label": "Sanitary clearance",
-        "value": "By region / health office"
+        "value": "Depends on region / health office"
+      },
+      {
+        "label": "Medical covering letter",
+        "value": "Deposited at Ebène by Mr. Vayid"
       }
     ]
   }
